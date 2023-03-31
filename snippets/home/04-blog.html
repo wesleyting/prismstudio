@@ -1,0 +1,26 @@
+{% load static %}
+<section class="wrapper wrapper-bgc">
+    <div class="container pt-14">
+      <div class="row mb-8 text-center">
+        <div class="col-lg-9 col-xl-8 col-xxl-7 mx-auto mb-8
+        ">
+          <h2 class="fs-16 text-uppercase text-primary mb-3">Our Blog</h2>
+          <h3 class="display-4">Keep up with our latest news and releases.</h3>
+        </div>
+        <!-- /column -->
+      </div>
+      <!-- /.row -->
+      <div class="grid grid-view projects-masonry">
+        <div class="row gx-md-8 gy-10 gy-md-13 isotope">
+            {% for post in posts %}
+            {% include 'staticprism/snippets/home/test-post.html' with post=post %}
+                
+            {% endfor %}
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.grid -->
+    </div>
+    <!-- /.container -->
+  </section>
+  <!-- /section -->

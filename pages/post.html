@@ -1,0 +1,84 @@
+{% extends "staticprism/base/base.html" %}
+{% load static %}
+{% load pimg %}
+{% load martortags %}
+{% block title %}
+    {{ post.title }}
+{% endblock title %}
+{% block logo %}{% static 'logos/logo-light.png' %}{% endblock logo %}
+{% block header_id %}navbar-bg-green{% endblock header_id %}
+{% block nav_color %}nav-link-white{% endblock nav_color %}
+{% block social_color %}social-white{% endblock social_color %}
+{% block content %}
+    <section class="wrapper bgc-green" id="text-light">
+        <div class="container pt-12 pb-14 text-center">
+            <div class="row">
+                <div class="col-md-10 col-xl-8 mx-auto">
+                    {% if post.image %}
+                    <div class="pb-8">
+                        <img src="{{ post.image.url }}" alt="" class="rounded blog-post-image" style="max-width: 400px;"/>
+                    </div>
+                    {% endif %}
+                    <div class="post-header">
+                        <div class="post-category text-line text-white">
+                            <a href="#" class="text-reset" rel="category">{{ post.get_category_display }}</a>
+                        </div>
+                        <!-- /.post-category -->
+                        <h1 class="display-1 mb-4 text-white">{{ post.title }}</h1>
+                        <ul class="post-meta text-white">
+                            <li class="post-date">
+                                <i class="uil uil-calendar-alt"></i><span>{{ post.created_on|date:"N j, Y" }}</span>
+                            </li>
+                        </ul>
+                        <!-- /.post-meta -->
+                    </div>
+                    <!-- /.post-header -->
+                </div>
+                <!-- /column -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- /section -->
+    <section class="wrapper bg-light">
+        <div class="container py-14 py-md-16">
+            <div class="gx-lg-8 gx-xl-12" id="blog-wrapper">
+                    <div class="blog single">
+                        <div class="card">
+                            <figure class="card-img-top">
+                                <img src="./assets/img/photos/b1.jpg" alt="" />
+                            </figure>
+                            <div class="card-body">
+                                <div class="classic-view">
+                                    <article class="post">
+                                        <div class="post-content mb-5">
+                                            <h2 class="h1 mb-4">{{ post.title }}</h2>
+                                            {% if post.content %}<p>{{ post.content|safe_markdown }}</p>{% endif %}
+                                        </div>
+                                        <!-- /.post-content -->
+                                    </article>
+                                    <!-- /.post -->
+                                </div>
+                                <!-- /.classic-view -->
+                                <hr />
+                                <nav class="nav social">
+                                    <a href="https://www.facebook.com/people/Prism-Studio/100087908092943/"><i class="uil uil-facebook-f"></i></a>
+                                    <a href="https://www.instagram.com/prismstudiocanada/"><i class="uil uil-instagram"></i></a>
+                                    <a href="#"><i class="uil uil-linkedin"></i></a>
+                              </nav>
+                                <!-- /.social -->
+    
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.blog -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- /section -->
+{% endblock content %}

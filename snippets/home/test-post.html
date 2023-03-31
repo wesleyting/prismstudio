@@ -1,0 +1,19 @@
+{% load static %}
+<div class="project item col-md-6 col-xl-4 product">
+    {% if post.image %}
+    <figure class="lift rounded mb-6">
+        <a href="/post/{{ post.slug }}">
+            <img src="{{ post.image.url }}" alt="" />
+        </a>
+    </figure>
+    {% endif %}
+      <div class="project-details d-flex justify-content-center flex-column">
+        <div class="post-header">
+          <div class="post-category mb-2 custom-text-blog"><a class="home-blog-title" href="/post/{{ post.slug }}">{{ post.get_category_display }}</a></div>
+          <h2 class="post-title h3"><a class="home-blog-title" href="/post/{{ post.slug }}">{{ post.title }}</a></h2>
+        <!-- /.post-header -->
+      </div>
+      <!-- /.project-details -->
+    </div>
+    <!-- /.project -->
+</div>

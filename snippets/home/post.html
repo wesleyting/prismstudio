@@ -1,0 +1,42 @@
+<article class="item post col-md-3">
+    <div class="card shadow-lg">
+        {% if post.image %}
+            <figure class="card-img-top overlay overlay-1">
+                <a href="/post/{{ post.slug }}">
+                    <img src="{{ post.image.url }}" alt="" />
+                </a>
+                <figcaption>
+                    <h5 class="from-top mb-0">Read More</h5>
+                </figcaption>
+            </figure>
+        {% endif %}
+        <div class="card-body">
+            <div class="post-header">
+                {% comment %} <div class="post-category">
+                    <a href="#" class="hover link-yellow" rel="category">Roadtrip</a>
+                </div>
+                <!-- /.post-category --> {% endcomment %}
+                <h2 class="post-title h3 mt-1 mb-3">
+                    <a class="link-navy" href="/post/{{ post.slug }}">{{ post.title }}</a>
+                </h2>
+            </div>
+            <!-- /.post-header -->
+            <div class="post-content">
+                <p>{{ post.excerpt }}</p>
+            </div>
+            <!-- /.post-content -->
+        </div>
+        <!--/.card-body -->
+        <div class="card-footer">
+            <ul class="post-meta d-flex mb-0">
+                <li class="post-date">
+                    <i class="uil uil-calendar-alt"></i><span>{{ post.created_on|date:"N j, Y" }}</span>
+                </li>
+            </ul>
+            <!-- /.post-meta -->
+        </div>
+        <!-- /.card-footer -->
+    </div>
+    <!-- /.card -->
+</article>
+<!-- /.post -->

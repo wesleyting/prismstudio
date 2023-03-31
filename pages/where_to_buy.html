@@ -1,0 +1,139 @@
+{% extends "staticprism/base/base.html" %}
+{% load static %}
+{% block title %}
+    Where to Buy
+{% endblock title %}
+{% block base_head %}
+    <style>
+  #map {
+    height: 100%;
+  }
+
+  /* Styling for autocomplete search bar */
+  #pac-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    font-family: 'quincycf', arial, sans-serif;
+    margin: 10px 10px 0 0;
+    -moz-box-sizing: border-box;
+    outline: none;
+  }
+  
+  #pac-container {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+  
+  #pac-input {
+    background-color: #fff;
+    font-family: 'quincycf', arial, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+  
+  #title {
+    color: #fff;
+    background-color: var(--green);
+    font-size: 18px;
+    font-weight: 400;
+    padding: 6px 12px;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  /* Styling for an info pane that slides out from the left. 
+   * Hidden by default. */
+  #panel {
+    height: 100%;
+    width: null;
+    background-color: white;
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: all .2s ease-out;
+    position: absolute;
+    padding: 1rem 0;
+    border-radius: 8px;
+  }
+  
+  .open {
+    width: 250px;
+  }
+  
+  .place {
+    font-family: 'quincycf', arial, sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-block-end: 0px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  
+  .distanceText {
+    color: silver;
+    font-family: 'quincycf', arial, sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+    margin-block-start: 0.25em;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+    </style>
+{% endblock base_head %}
+{% block base_js %}
+    <script src="{% static 'prism/js/google_store_finder.js' %}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&libraries=places&callback=initMap&solution_channel=GMP_codelabs_simplestorelocator_v1_a">
+    </script>
+{% endblock base_js %}
+{% block header_id %}navbar-bg-purple{% endblock header_id %}
+{% block content %}
+    <section class="wrapper wrapper-purple">
+        <div class="container pt-17 pb-20 pt-md-16 pb-md-22 text-center">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-3 mb-3" id="text-light">Find Prism Studio Products Near You.</h1>
+                    <!-- /nav -->
+                </div>
+                <!-- /column -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <section class="wrapper">
+        <div class="container pb-11">
+            <div class="row mb-14 mb-md-16">
+                <div class="col-xl-10 mx-auto mt-n19">
+                    <div class="card">
+                        <div class="row gx-0">
+                            <div class="col-12 align-self-stretch" id="map-container">
+                                <div class="map rounded" id="map" style="min-height: 33rem;"></div>
+                                <!-- /.map -->
+                            </div>
+                            <!--/column -->
+                        </div>
+                        <!--/.row -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /column -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+{% endblock content %}

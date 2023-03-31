@@ -1,0 +1,14 @@
+{% extends "staticprism/base/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+    Prism Studio
+{% endblock title %}
+{% block content %}
+    {% include 'staticprism/snippets/home/01-hero.html' %}
+    {% include 'staticprism/snippets/home/02-categories.html' %}
+    {% include 'staticprism/snippets/home/03-full-width.html' %}
+    {% include 'staticprism/snippets/home/04-blog.html' %}
+    {% include 'staticprism/snippets/home/05-releases.html' %}
+    {% include 'staticprism/snippets/home/06-cta.html' %}
+{% endblock content %}

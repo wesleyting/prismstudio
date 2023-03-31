@@ -1,0 +1,33 @@
+{% extends "staticprism/base/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+    Die Tutorials
+{% endblock title %}
+{% block base_head %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+{% endblock base_head %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2 class="display-3 mt-8 mx-3 text-center">Tutorials for Dies</h2>
+            <p class="lead mb-10 mx-3 text-center">To download the full-sized PDF, click on the thumbnail or button below.</p>
+
+            <div class="tutorials-grid mb-12">
+            {% for file in tutorials %}
+                <div class="tutorial mb-6">   
+                    <a href="{{ file.file.url }}">
+                        <div class="tutorial-image mb-2">
+                            <img src="{{ file.thumbnail.url }}" alt=""> 
+                        </div>     
+                    </a>
+                    <p class="inter hover-color fs-16 m-0"><a href="{{ file.file.url }}">{{ file.product.sku }}</a></p>
+                    <p class="inter h6 fw-semibold m-0">{{ file.product.name }}</p>
+                    <a href="{{ file.file.url }}" class="download-file-btn mt-3" download="{{ file.file.name }}">Download<span class="material-symbols-outlined align-middle ms-2 mb-1">download</span>
+                    </a>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

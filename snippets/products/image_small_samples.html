@@ -1,0 +1,9 @@
+{% load pimg %}
+{% if exists %}
+    <div class="swiper-slide">
+        <img src="{% pimg object.id object.cache_code 'med' letter %}"
+             {% comment %}srcset="{% pimg object.id object.cache_code 'full' letter %} 2x"{% endcomment %}
+             class="rounded"
+             alt=""/>
+    </div>
+{% endif %}

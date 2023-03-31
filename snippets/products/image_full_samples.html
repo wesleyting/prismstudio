@@ -1,0 +1,19 @@
+{% load pimg %}
+{% if exists %}
+    <div class="swiper-slide">
+        <figure class="rounded">
+            <img src="{% pimg object.id object.cache_code 'full' letter %}"
+                 {% comment %}
+                 srcset="{% pimg object.id object.cache_code 'full' letter %} 2x"
+                 {% endcomment %}
+                 alt=""
+                 style="max-height:600px;
+                        width:auto;"/>
+            <a class="item-link swiper-no-swiping"
+               href="{% pimg object.id object.cache_code 'full' letter %}"
+               data-glightbox
+               data-gallery="product-group"><i class="uil uil-focus-add"></i></a>
+        </figure>
+    </div>
+    <!--/.swiper-slide -->
+{% endif %}

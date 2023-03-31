@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+      <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="Prism Studio offers a wide range of high-quality art supplies for scrapbooking, papercrafting, and artists, including cardstock, foil cardstock, acrylic blocks, ink blending brushes, bone folders, and more. Shop now and unleash your creativity.">
+            <meta name="keywords" content="cardstock, foil cardstock, art supplies, scrapbooking, papercrafting, artists, acrylic blocks, ink blending brushes, bone folders, Prism Studio">
+            
+            <meta property="og:title" content="Shop Affordable and High-Quality Art Supplies at Prism Studio">
+            <meta property="og:description" content="Prism Studio offers a wide range of high-quality art supplies for scrapbooking, papercrafting, and artists, including cardstock, foil cardstock, acrylic blocks, ink blending brushes, bone folders, and more. Shop now and unleash your creativity.">
+            <meta property="og:image" content="https://www.prismstudio.ca/static/logos/prism-studio-logo-transparent.png">
+            <meta property="og:url" content="https://www.prismstudio.ca/">
+            <meta property="og:type" content="website">
+            
+
+            <title>
+                  {% block base_title %}
+                        {% block title %}{{ title }}{% endblock title %} - Affordable Quality Art Supplies!
+                  {% endblock base_title %}
+            </title>
+            <link rel="apple-touch-icon"
+                  sizes="180x180"
+                  href="{% static 'prism/favicon/apple-touch-icon.png' %}">
+            <link rel="icon"
+                  type="image/png"
+                  sizes="32x32"
+                  href="{% static 'prism/favicon/favicon-32x32.png' %}">
+            <link rel="icon"
+                  type="image/png"
+                  sizes="16x16"
+                  href="{% static 'prism/favicon/favicon-16x16.png' %}">
+            <link rel="manifest" href="{% static 'prism/favicon/site.webmanifest' %}">
+            <link rel="mask-icon"
+                  href="{% static 'prism/favicon/safari-pinned-tab.svg' %}"
+                  color="#5bbad5">
+            <meta name="msapplication-TileColor" content="#da532c">
+            <meta name="theme-color" content="#ffffff">
+            <link rel="stylesheet"
+                  href="{% static 'themes/sandbox/assets/css/plugins.css' %}">
+            <link rel="stylesheet"
+                  href="{% static 'themes/sandbox/assets/css/style.css' %}">
+            <link rel="stylesheet" href="{% static 'prism/custom.css' %}?bcc={{ BROWSER_CACHE_CODE }}">
+            {% comment %} <link rel="preload" href="{% static 'themes/sandbox/assets/css/fonts/urbanist.css' %}" as="style" onload="this.rel='stylesheet'"> {% endcomment %}
+            <link rel="preload"
+                  href="{% static 'prism/quincycf.css' %}"
+                  as="style"
+                  onload="this.rel='stylesheet'">
+            <link rel="stylesheet"
+                  href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
+            <link rel="canonical" href="https://www.prismstudio.ca/">
+            {% block base_head %}
+            {% endblock base_head %}
+      </head>
+      <body class="body">
+            <div class="content-wrapper">
+                  <header class="wrapper bg-gray navbar-bg-light">
+                        <nav class="navbar navbar-expand-lg center-nav navbar-light navbar-custom"
+                             id="{% block header_id %}navbar-bg-light{% endblock header_id %}">
+                              <div class="container flex-lg-row flex-nowrap align-items-center">
+                                    <div class="navbar-brand w-100">
+                                          <a href="/">
+                                                <img src="{% block logo %}{% static 'logos/prism-studio-logo-transparent.png' %}{% endblock logo %}"
+                                                     alt="Prism Studio"
+                                                     style="height:52px"/>
+                                          </a>
+                                    </div>
+                                    <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start"
+                                         id="navbar-collapse">
+                                          <div class="offcanvas-header d-lg-none">
+                                                <h3 class="text-white fs-30 mb-0">Prism Studio</h3>
+                                                <button type="button"
+                                                        class="btn-close btn-close-white"
+                                                        data-bs-dismiss="offcanvas"
+                                                        aria-label="Close"></button>
+                                          </div>
+                                          <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
+                                                <ul class="navbar-nav {% block nav_color %}{% endblock nav_color %}">
+                                                      <li class="nav-item">
+                                                            <a class="nav-link" id="nav-link" href="/">Home</a>
+                                                      </li>
+                                                      <li class="nav-item dropdown">
+                                                            <a class="nav-link dropdown-toggle"
+                                                               id="nav-link"
+                                                               href="/products"
+                                                               data-bs-toggle="dropdown">Products</a>
+                                                            <ul class="dropdown-menu" id="dropdown-menu">
+                                                                  <li class="nav-item">
+                                                                        <a class="dropdown-item" href="/products">All</a>
+                                                                  </li>
+                                                                  {% for fam in families %}
+                                                                        {% if fam.get_active_children %}
+                                                                              <li class="dropdown dropdown-submenu dropend">
+                                                                                    <a class="dropdown-item dropdown-toggle"
+                                                                                       href="/line/{{ fam.slug }}"
+                                                                                       data-hover="dropdown">{{ fam.name }}</a>
+                                                                                    <ul class="dropdown-menu">
+                                                                                          {% for subfam in fam.get_active_children  %}
+                                                                                                <li class="nav-item">
+                                                                                                      <a class="dropdown-item" href="/line/{{ subfam.slug }}">{{ subfam.name }}</a>
+                                                                                                </li>
+                                                                                          {% endfor %}
+                                                                                    </ul>
+                                                                              </li>
+                                                                        {% endif %}
+                                                                  {% endfor %}
+                                                            </ul>
+                                                      </li>
+                                                      {% comment %}
+                                                      <li class="nav-item">
+                                                      <a class="nav-link" href="/about">About</a>
+                                                      </li>
+                                                      {% endcomment %}
+                                                      <li class="nav-item">
+                                                            <a class="nav-link" id="nav-link" href="/posts">Blog</a>
+                                                      </li>
+                                                      <li class="nav-item">
+                                                            <a class="nav-link" id="nav-link" href="/where-to-buy">Locations</a>
+                                                      </li>
+                                                </ul>
+                                                <!-- /.navbar-nav -->
+                                                <div class="offcanvas-footer d-lg-none">
+                                                      <div>
+                                                            <nav class="nav social social-white mt-4 ">
+                                                                  <a href="https://www.facebook.com/people/Prism-Studio/100087908092943/"><i class="uil uil-facebook-f"></i></a>
+                                                                  <a href="https://www.instagram.com/prismstudiocanada/"><i class="uil uil-instagram"></i></a>
+                                                                  <a href="#"><i class="uil uil-linkedin"></i></a>
+                                                            </nav>
+                                                            <!-- /.social -->
+                                                      </div>
+                                                </div>
+                                                <!-- /.offcanvas-footer -->
+                                          </div>
+                                          <!-- /.offcanvas-body -->
+                                    </div>
+                                    <!-- /.navbar-collapse -->
+                                    <div class="navbar-other w-100 d-flex ms-auto">
+                                          <ul class="navbar-nav flex-row align-items-center ms-auto">
+                                                <li class="nav-item">
+                                                      <nav class="nav social social-muted justify-content-end text-end"
+                                                           id="{% block social_color %}{% endblock social_color %}">
+                                                            <a href="https://www.facebook.com/people/Prism-Studio/100087908092943/"><i class="uil uil-facebook-f"></i></a>
+                                                            <a href="https://www.instagram.com/prismstudiocanada/"><i class="uil uil-instagram"></i></a>
+                                                            <a href="#"><i class="uil uil-linkedin "></i></a>
+                                                      </nav>
+                                                      <!-- /.social -->
+                                                </li>
+                                                <li class="nav-item d-lg-none" id="hamburger">
+                                                      <button class="hamburger offcanvas-nav-btn">
+                                                            <span></span>
+                                                      </button>
+                                                </li>
+                                          </ul>
+                                          <!-- /.navbar-nav -->
+                                    </div>
+                                    <!-- /.navbar-other -->
+                              </div>
+                              <!-- /.container -->
+                        </nav>
+                        <!-- /.navbar -->
+                  </header>
+                  {% block content %}
+                  {% endblock content %}
+                  {% block base_js %}
+                        <script>
+                              jQuery(function($) {
+                                  $('.dropdown > a').click(function() {
+                                      location.href = this.href;
+                                  });
+                              });
+                        </script>
+                  {% endblock base_js %}
+            </div>
+            <!-- /.content-wrapper -->
+            {% include 'staticprism/base/footer.html' %}
+            <div class="progress-wrap">
+                  <svg class="progress-circle svg-content"
+                       width="100%"
+                       height="100%"
+                       viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+                  </svg>
+            </div>
+            <script src="{% static 'themes/sandbox/assets/js/plugins.js' %}"></script>
+            <script src="{% static 'themes/sandbox/assets/js/theme.js' %}"></script>
+      </body>
+</html>

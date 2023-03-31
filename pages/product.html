@@ -1,0 +1,308 @@
+{% extends "staticprism/base/base.html" %}
+{% load static %}
+{% load currency %}
+{% load pimg %}
+{% block title %}
+    {{ product.name }}
+{% endblock title %}
+{% block content %}
+    <section class="wrapper bg-gray">
+        <div class="container py-3 py-md-5">
+            <nav class="d-inline-block" aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="/products">Prism Studio Products</a>
+                    </li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page">
+                        <a href="/line/{{ product.family.slug }}">{{ product.family.name }}</a>
+                    </li>
+                </ol>
+            </nav>
+            <!-- /nav -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- /section -->
+    <section class="wrapper bg-light">
+        <div class="container py-14 py-md-16">
+            <div class="row gx-md-8 gx-xl-12 gy-8">
+                <div class="col-lg-6">
+                    <div class="swiper-container swiper-thumbs-container dots-over"
+                         data-margin="10"
+                         data-dots="false"
+                         data-nav="true"
+                         data-thumbs="true">
+                        <div class="swiper">
+                            <div class="swiper-wrapper"
+                                 style="max-height:600px;
+                                        width:auto;
+                                        text-align:center;">
+                                {% comment %}
+                                {% if product.image_exists %}
+                                    <div class="swiper-slide">
+                                        <figure class="rounded">
+                                            <img src="{% pimg product.id product.cache_code 'med' %}" srcset="{% pimg product.id product.cache_code 'full' %} 2x" alt=""/>
+                                            <a class="item-link swiper-no-swiping" href="{% pimg product.id product.cache_code 'full' %}" data-glightbox data-gallery="product-group"><i class="uil uil-focus-add"></i></a>
+                                        </figure>
+                                    </div>
+                                    <!--/.swiper-slide -->
+                                {% endif %}
+                                {% if product.image_s1_exists %}
+                                    <div class="swiper-slide">
+                                        <figure class="rounded">
+                                            <img src="{% pimg product.id product.cache_code 'med' 'a' %}" srcset="{% pimg product.id product.cache_code 'full' 'a' %} 2x" alt=""/>
+                                            <a class="item-link swiper-no-swiping" href="{% pimg product.id product.cache_code 'full' 'a' %}" data-glightbox data-gallery="product-group"><i class="uil uil-focus-add"></i></a>
+                                        </figure>
+                                    </div>
+                                    <!--/.swiper-slide -->
+                                {% endif %}
+                                {% endcomment %}
+                                {% include "staticprism/snippets/products/image_full.html" with product=product exists=product.image_exists %}
+                                {% include "staticprism/snippets/products/image_full_samples.html" with product=product exists=product.image_s1_exists letter="a" %}
+                                {% include "staticprism/snippets/products/image_full_samples.html" with product=product exists=product.image_s2_exists letter="b" %}
+                                {% include "staticprism/snippets/products/image_full_samples.html" with product=product exists=product.image_s3_exists letter="c" %}
+                                {% include "staticprism/snippets/products/image_full_samples.html" with product=product exists=product.image_s4_exists letter="d" %}
+                                {% include "staticprism/snippets/products/image_full_samples.html" with product=product exists=product.image_s5_exists letter="e" %}
+                                {% include "staticprism/snippets/products/image_full_samples.html" with product=product exists=product.image_s6_exists letter="f" %}
+                                {% include "staticprism/snippets/products/image_full_samples.html" with product=product exists=product.image_s7_exists letter="g" %}
+                            </div>
+                            <!--/.swiper-wrapper -->
+                        </div>
+                        <!-- /.swiper -->
+                        <div class="swiper swiper-thumbs">
+                            <div class="swiper-wrapper">
+                                {% comment %}
+                                {% if product.image_exists %}
+                                    <div class="swiper-slide">
+                                        <img src="{% pimg product.id product.cache_code 'med' %}" srcset="{% pimg product.id product.cache_code 'full' %} 2x" class="rounded" alt=""/>
+                                    </div>
+                                {% endif %}
+                                {% if product.image_s1_exists %}
+                                    <div class="swiper-slide">
+                                        <img src="{% pimg product.id product.cache_code 'med' 'a' %}" srcset="{% pimg product.id product.cache_code 'med' 'a' %} 2x" class="rounded" alt=""/>
+                                    </div>
+                                {% endif %}
+                                {% endcomment %}
+                                {% include "staticprism/snippets/products/image_small.html" with product=product exists=product.image_exists %}
+                                {% include "staticprism/snippets/products/image_small_samples.html" with product=product exists=product.image_s1_exists letter="a" %}
+                                {% include "staticprism/snippets/products/image_small_samples.html" with product=product exists=product.image_s2_exists letter="b" %}
+                                {% include "staticprism/snippets/products/image_small_samples.html" with product=product exists=product.image_s3_exists letter="c" %}
+                                {% include "staticprism/snippets/products/image_small_samples.html" with product=product exists=product.image_s4_exists letter="d" %}
+                                {% include "staticprism/snippets/products/image_small_samples.html" with product=product exists=product.image_s5_exists letter="e" %}
+                                {% include "staticprism/snippets/products/image_small_samples.html" with product=product exists=product.image_s6_exists letter="f" %}
+                                {% include "staticprism/snippets/products/image_small_samples.html" with product=product exists=product.image_s7_exists letter="g" %}
+                            </div>
+                            <!--/.swiper-wrapper -->
+                        </div>
+                        <!-- /.swiper -->
+                    </div>
+                    <!-- /.swiper-container -->
+                </div>
+                <!-- /column -->
+                <div class="col-lg-6">
+                    <div class="post-header mb-5">
+                        <h2 class="post-title display-5">{{ product.name }}</h2>
+                        {% if product.cost_msrp > 0 %}
+                            <p class="price fs-20 mb-2">
+                                <span class="amount">{{ product.cost_msrp|currency }}</span>
+                            </p>
+                        {% endif %}
+                    </div>
+                    <!-- /.post-header -->
+                    {% if product.description_exists %}<p class="mb-6">{{ product.description_rendered|safe }}</p>{% endif %}
+                    <span>
+                        <a href="/where-to-buy" class="btn btn-lg" id="btn-product">Where to Buy</a>
+                    </span>
+                </div>
+                <!-- /column -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- /section -->
+    {% comment %} <section class="wrapper bg-gray">
+        <div class="container py-14 py-md-16">
+            <h3 class="h2 mb-6 text-center">You Might Also Like</h3>
+            <div class="swiper-container blog grid-view shop mb-6" data-margin="30" data-dots="true" data-items-xl="3" data-items-md="2" data-items-xs="1">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide project item">
+                            <figure class="rounded mb-6">
+                                <img src="./assets/img/photos/sh1.jpg" srcset="./assets/img/photos/sh1@2x.jpg 2x" alt=""/>
+                                <a class="item-like" href="#" data-bs-toggle="white-tooltip" title="Add to wishlist"><i class="uil uil-heart"></i></a>
+                                <a class="item-view" href="#" data-bs-toggle="white-tooltip" title="Quick view"><i class="uil uil-eye"></i></a>
+                                <a href="#" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</a>
+                                <span class="avatar bg-pink text-white w-10 h-10 position-absolute text-uppercase fs-13" style="top: 1rem; left: 1rem;"><span>Sale!</span></span>
+                            </figure>
+                            <div class="post-header">
+                                <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+                                    <div class="post-category text-ash mb-0">Shoes</div>
+                                    <span class="ratings five"></span>
+                                </div>
+                                <h2 class="post-title h3 fs-22">
+                                    <a href="./shop-product.html" class="link-dark">Nike Air Sneakers</a>
+                                </h2>
+                                <p class="price">
+                                    <del><span class="amount">$55.00</span></del> <ins><span class="amount">$45.00</span></ins>
+                                </p>
+                            </div>
+                            <!-- /.post-header -->
+                        </div>
+                        <!--/.swiper-slide -->
+                        <div class="swiper-slide project item">
+                            <figure class="rounded mb-6">
+                                <img src="./assets/img/photos/sh2.jpg" srcset="./assets/img/photos/sh2@2x.jpg 2x" alt=""/>
+                                <a class="item-like" href="#" data-bs-toggle="white-tooltip" title="Add to wishlist"><i class="uil uil-heart"></i></a>
+                                <a class="item-view" href="#" data-bs-toggle="white-tooltip" title="Quick view"><i class="uil uil-eye"></i></a>
+                                <a href="#" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</a>
+                            </figure>
+                            <div class="post-header">
+                                <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+                                    <div class="post-category text-ash mb-0">Electronics</div>
+                                    <span class="ratings four"></span>
+                                </div>
+                                <h2 class="post-title h3 fs-22">
+                                    <a href="./shop-product.html" class="link-dark">Apple Watch</a>
+                                </h2>
+                                <p class="price">
+                                    <span class="amount">$55.00</span>
+                                </p>
+                            </div>
+                            <!-- /.post-header -->
+                        </div>
+                        <!--/.swiper-slide -->
+                        <div class="swiper-slide project item">
+                            <figure class="rounded mb-6">
+                                <img src="./assets/img/photos/sh3.jpg" srcset="./assets/img/photos/sh3@2x.jpg 2x" alt=""/>
+                                <a class="item-like" href="#" data-bs-toggle="white-tooltip" title="Add to wishlist"><i class="uil uil-heart"></i></a>
+                                <a class="item-view" href="#" data-bs-toggle="white-tooltip" title="Quick view"><i class="uil uil-eye"></i></a>
+                                <a href="#" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</a>
+                                <span class="avatar bg-aqua text-white w-10 h-10 position-absolute text-uppercase fs-13" style="top: 1rem; left: 1rem;"><span>New!</span></span>
+                            </figure>
+                            <div class="post-header">
+                                <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+                                    <div class="post-category text-ash mb-0">Electronics</div>
+                                </div>
+                                <h2 class="post-title h3 fs-22">
+                                    <a href="./shop-product.html" class="link-dark">Headphones</a>
+                                </h2>
+                                <p class="price">
+                                    <span class="amount">$55.00</span>
+                                </p>
+                            </div>
+                            <!-- /.post-header -->
+                        </div>
+                        <!--/.swiper-slide -->
+                        <div class="swiper-slide project item">
+                            <figure class="rounded mb-6">
+                                <img src="./assets/img/photos/sh4.jpg" srcset="./assets/img/photos/sh4@2x.jpg 2x" alt=""/>
+                                <a class="item-like" href="#" data-bs-toggle="white-tooltip" title="Add to wishlist"><i class="uil uil-heart"></i></a>
+                                <a class="item-view" href="#" data-bs-toggle="white-tooltip" title="Quick view"><i class="uil uil-eye"></i></a>
+                                <a href="#" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</a>
+                            </figure>
+                            <div class="post-header">
+                                <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+                                    <div class="post-category text-ash mb-0">Shoes</div>
+                                    <span class="ratings three"></span>
+                                </div>
+                                <h2 class="post-title h3 fs-22">
+                                    <a href="./shop-product.html" class="link-dark">Colorful Sneakers</a>
+                                </h2>
+                                <p class="price">
+                                    <span class="amount">$55.00</span>
+                                </p>
+                            </div>
+                            <!-- /.post-header -->
+                        </div>
+                        <!--/.swiper-slide -->
+                        <div class="swiper-slide project item">
+                            <figure class="rounded mb-6">
+                                <img src="{% pimg product.id product.cache_code 'med' %}" srcset="{% pimg product.id product.cache_code 'full' %} 2x" alt=""/>
+                                <a class="item-like" href="#" data-bs-toggle="white-tooltip" title="Add to wishlist"><i class="uil uil-heart"></i></a>
+                                <a class="item-view" href="#" data-bs-toggle="white-tooltip" title="Quick view"><i class="uil uil-eye"></i></a>
+                                <a href="#" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</a>
+                            </figure>
+                            <div class="post-header">
+                                <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+                                    <div class="post-category text-ash mb-0">Electronics</div>
+                                    <span class="ratings one"></span>
+                                </div>
+                                <h2 class="post-title h3 fs-22">
+                                    <a href="./shop-product.html" class="link-dark">Polaroid Camera</a>
+                                </h2>
+                                <p class="price">
+                                    <span class="amount">$55.00</span>
+                                </p>
+                            </div>
+                            <!-- /.post-header -->
+                        </div>
+                        <!--/.swiper-slide -->
+                    </div>
+                    <!--/.swiper-wrapper -->
+                </div>
+                <!-- /.swiper -->
+            </div>
+            <!-- /.swiper-container -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- /section --> {% endcomment %}
+    {% comment %} <section class="wrapper bg-gray">
+        <div class="container py-12 py-md-14">
+            <div class="row gx-lg-8 gx-xl-12 gy-8">
+                <div class="col-md-6 col-lg-4">
+                    <div class="d-flex flex-row">
+                        <div>
+                            <img src="./assets/img/icons/solid/shipment.svg" class="svg-inject icon-svg icon-svg-sm solid-mono text-navy me-4" alt=""/>
+                        </div>
+                        <div>
+                            <h4 class="mb-1">
+                                Free Shipping
+                            </h4>
+                            <p class="mb-0">
+                                Duis mollis gravida commodo id luctus erat porttitor ligula, eget lacinia odio sem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--/column -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="d-flex flex-row">
+                        <div>
+                            <img src="./assets/img/icons/solid/push-cart.svg" class="svg-inject icon-svg icon-svg-sm solid-mono text-navy me-4" alt=""/>
+                        </div>
+                        <div>
+                            <h4 class="mb-1">
+                                30 Days Return
+                            </h4>
+                            <p class="mb-0">
+                                Duis mollis gravida commodo id luctus erat porttitor ligula, eget lacinia odio sem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--/column -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="d-flex flex-row">
+                        <div>
+                            <img src="./assets/img/icons/solid/verify.svg" class="svg-inject icon-svg icon-svg-sm solid-mono text-navy me-4" alt=""/>
+                        </div>
+                        <div>
+                            <h4 class="mb-1">
+                                2-Years Warranty
+                            </h4>
+                            <p class="mb-0">
+                                Duis mollis gravida commodo id luctus erat porttitor ligula, eget lacinia odio sem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--/column -->
+            </div>
+            <!--/.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- /section --> {% endcomment %}
+{% endblock content %}
