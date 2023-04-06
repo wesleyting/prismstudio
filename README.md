@@ -1,3 +1,3 @@
 # prismstudio
 
-Arts and craft information/brand website created using Django, Python, and HTML/CSS/JS.
+Arts and Craft information/brand website created using Python and Django for static site generation, with product information sourced from a parent site and presented using HTML, CSS, and JS.
